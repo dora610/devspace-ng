@@ -1,1 +1,10 @@
-<p>dev-repo works!</p>
+<div class="my-6 mx-4" [ngClass]="{hidden: !repos}">
+    <h2 class="text-lg font-bold text-purple-900 mb-2">Repo List</h2>
+    <ul class="flex flex-col gap-1">
+        <li *ngFor="let repo of repos;" class="rounded-md px-3 py-2 border-purple-400 bg-purple-50 shadow-sm">
+            <a [href]="repo?.html_url" class="text-lg font-semibold text-purple-700 space-x-1 border-slate-700">{{repo?.name}}</a>
+            <p class="text-base font-light">Description: {{repo?.description}}</p>
+            <p class="text-sm font-extralight text-slate-700">Language: {{repo?.language}}</p>
+        </li>
+    </ul>
+</div>

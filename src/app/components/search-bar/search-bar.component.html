@@ -1,1 +1,16 @@
-<p>search-bar works!</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group flex justify-center gap-2 items-center my-4">
+    <input
+      type="text"
+      name="userName"
+      id="userName"
+      class="form-input px-2 py-1 rounded-md border-purple-300 border-2 focus:outline-purple-500"
+      ngModel
+      placeholder="user name"
+      required
+    />
+    <button
+    [disabled]="!f.valid"
+     class="px-2 py-2 text-sm bg-purple-500 text-white rounded-md disabled:bg-purple-300">Search</button>
+  </div>
+</form>

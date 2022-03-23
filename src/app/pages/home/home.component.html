@@ -1,1 +1,5 @@
-<p>home works!</p>
+<app-search-bar (newUserNameEvent)="fetchRepo($event)"></app-search-bar>
+<div class="flex justify-evenly gap-2">
+    <app-dev-profile [userName]="userName" (newRepoUrl)="shareRepoUrl($event)"></app-dev-profile>
+    <app-dev-repo [repoUrl]="repoUrl"></app-dev-repo>
+</div>

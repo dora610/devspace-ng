@@ -25,3 +25,57 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Packege Installation
+
+### Tailwind CSS:
+
+```
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+- update tailwind.config.js
+```
+content: [
+    "./src/**/*.{html,ts}",
+  ],
+```
+- add to style.css
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### Add firebase to angular:
+
+- run
+```
+ng add @angular/fire
+```
+- insert firebase config inside environment.ts file
+
+
+### NGX-Toastr
+```
+npm install ngx-toastr --save
+npm install @angular/animations --save
+```
+- inside style.css
+```
+@import '~ngx-toastr/toastr';
+```
+@NgModule
+```
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+```
+```
+@NgModule({
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
+```

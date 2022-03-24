@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { GithubService } from 'src/app/service/github.service';
 import { Dev } from 'src/model/Dev';
@@ -11,33 +19,40 @@ import { Dev } from 'src/model/Dev';
 export class DevProfileComponent implements OnInit, OnChanges {
   @Input() userName: any;
   @Output()
-  newRepoUrl = new EventEmitter<string>()
+  newRepoUrl = new EventEmitter<string>();
 
-  dev: Dev | any
+  dev: Dev | any;
+  isLoading: boolean = false;
 
   constructor(private ghService: GithubService, private toast: ToastrService) {}
 
   ngOnInit(): void {}
 
-  fetchDevDetails(){
+  fetchDevDetails() {
+    this.isLoading = true;
     this.ghService.getUserDetails(this.userName).subscribe({
-      next: (dev:any) => {
+      next: (dev: any) => {
         this.dev = dev;
-        this.newRepoUrl.emit(dev?.repos_url)
+        this.newRepoUrl.emit(dev?.repos_url);
       },
       error: (err) => {
         console.error(err);
         this.toast.error(err);
       },
+      complete: () => (this.isLoading = false),
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const prop in changes) {
-      if(prop==='userName' && changes[prop].currentValue && !changes[prop].firstChange){
+      if (
+        prop === 'userName' &&
+        changes[prop].currentValue &&
+        !changes[prop].firstChange
+      ) {
         // console.log('userName changed');
         // console.log(changes[prop]);
-        this.fetchDevDetails()
+        this.fetchDevDetails();
       }
     }
   }

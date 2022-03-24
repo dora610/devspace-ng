@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
 
 // http
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingbarComponent } from './components/loadingbar/loadingbar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     SigninComponent,
     SignupComponent,
     PageNotFoundComponent,
+    LoadingbarComponent,
   ],
   imports: [
     BrowserModule,

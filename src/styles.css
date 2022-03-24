@@ -1,11 +1,30 @@
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .active-link {
+    @apply text-rose-700;
+  }
 
-@layer components{
-    .active-link{
-        @apply text-rose-700;
-    }
+  .btn-primary{
+      @apply px-2 py-2 text-sm bg-purple-500 text-white rounded-md disabled:bg-purple-300 hover:bg-purple-600
+  }
+
+  .btn-reset{
+    @apply px-2 py-2 text-sm border-2 bg-red-200 text-white rounded-md hover:bg-red-600
+  }
+
+  .form-group {
+    @apply flex justify-between gap-2 items-center py-4;
+  }
+
+  .form-control {
+    @apply form-input px-2 py-1 rounded-md border-purple-300 border-2 focus:outline-purple-500;
+  }
+
+  .form-invalid-text{
+      @apply text-red-500 text-sm font-light
+  }
 }

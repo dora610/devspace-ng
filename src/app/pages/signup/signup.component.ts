@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  email!: string;
+  password!: string;
 
-  constructor() { }
+  isLoading: boolean = false;
+  title:string = 'Sign Up'
 
-  ngOnInit(): void {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toast: ToastrService
+  ) {}
+
+  ngOnInit(): void {}
+
+  onSubmit() {
+    this.isLoading = true;
+    this.auth
+      .signUp(this.email, this.password)
+      .then((res) => {
+        console.log(res);
+        this.toast.success('Successfully signed up. Please signin with your creds')
+        this.router.navigateByUrl('/signin');
+      })
+      .catch((err) => {
+        console.error(err);
+        this.toast.error(err);
+      })
+      .finally(() => (this.isLoading = false));
   }
-
 }

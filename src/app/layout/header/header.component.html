@@ -1,28 +1,31 @@
 <nav class="flex justify-between bg-purple-200 px-16 py-1 text-slate-800">
   <h2 class="text-lg font-semibold">
     <a [routerLink]="['/']">
-      {{ title }}
+      {{ brandName }}
     </a>
   </h2>
   <ul class="flex justify-between gap-10">
     <li>
       <a
+        *ngIf="!uid"
+        [routerLink]="['/signin']"
         routerLinkActive="active-link"
-        *ngIf="!user?.email"
-        [routerLink]="['/sigin']"
         >SignIn</a
       >
     </li>
     <li>
       <a
         routerLinkActive="active-link"
-        *ngIf="!user?.email"
-        [routerLink]="['/sigup']"
+        *ngIf="!uid"
+        [routerLink]="['/signup']"
         >SignUp</a
       >
     </li>
-    <li (click)="signOutHandler()">
-      <a *ngIf="user?.email">SignUp</a>
+    <li>
+      <h6 *ngIf="email">{{email}}</h6>
+    </li>
+    <li (click)="signOutHandler()" class="cursor-pointer hover:text-purple-500">
+      <a *ngIf="uid">SignOut</a>
     </li>
   </ul>
 </nav>

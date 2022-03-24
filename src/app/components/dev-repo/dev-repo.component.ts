@@ -15,25 +15,27 @@ import { Repo } from 'src/model/Repo';
   styleUrls: ['./dev-repo.component.css'],
 })
 export class DevRepoComponent implements OnInit, OnChanges {
-  @Input() 
+  @Input()
   repoUrl!: string;
-  repos!: Repo[];
 
-  constructor(private gh: GithubService, private toast: ToastrService) {
-  }
+  repos!: Repo[];
+  isLoading: boolean = false;
+
+  constructor(private gh: GithubService, private toast: ToastrService) {}
 
   ngOnInit(): void {}
 
   fetchRepo() {
+    this.isLoading = true;
     this.gh.getUserRepo(this.repoUrl).subscribe({
-      next: (repos:any) => {
-        console.log(repos);
+      next: (repos: any) => {
         this.repos = repos;
       },
       error: (err) => {
         console.error(err);
         this.toast.error(err);
       },
+      complete: () => (this.isLoading = false),
     });
   }
 

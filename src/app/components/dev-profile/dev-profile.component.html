@@ -1,6 +1,7 @@
 <div
   class="card w-72 flex flex-col gap-2 items-center border-2 border-purple-100 rounded-lg shadow-md bg-purple-50 p-4 m-6 text-slate-700"
-  [ngClass]="{ hidden: !userName }"
+  [ngClass]="{ hidden: !dev }"
+  *ngIf="dev; else loadingBlock"
 >
   <img
     [src]="dev?.avatar_url"
@@ -16,3 +17,6 @@
     <p class="text-sm">Update at: {{ dev?.updated_at | date }}</p>
   </div>
 </div>
+<ng-template #loadingBlock>
+  <app-loadingbar [isLoading]="isLoading"></app-loadingbar>
+</ng-template>

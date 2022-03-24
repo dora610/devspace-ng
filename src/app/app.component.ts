@@ -9,7 +9,6 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   title = 'devgram';
-  user!:User;
-
-  constructor(private auth: AuthService){}
+  
+  constructor(){}
 }

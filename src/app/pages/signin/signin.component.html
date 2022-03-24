@@ -1,1 +1,43 @@
-<p>signin works!</p>
+<div class="grid place-content-center m-10">
+  <div
+    class="bg-purple-50 border-purple-100 border-2 text-purple-700 px-6 py-4 rounded-md"
+  >
+    <h1 class="text-2xl font-bold border-b-2 border-purple-200 pb-4 mb-2">
+      {{title}}
+    </h1>
+    <div *ngIf="isLoading" class="flex justify-center">
+        <app-loadingbar [isLoading]="isLoading"></app-loadingbar>
+    </div>
+    <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="email" name="enail" id="email" class="form-control" 
+        [(ngModel)]="email"
+        required
+        #emailValue="ngModel"/>
+    </div>
+    <div [hidden]="emailValue.valid || emailValue.untouched">
+        <h5 class="form-invalid-text">Email is requied</h5>
+    </div>
+      <div class="form-group">
+        <label for="password">Password :</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          [(ngModel)]="password"
+          required
+          #pssValue="ngModel"
+        />
+      </div>
+      <div [hidden]="pssValue.valid || pssValue.untouched">
+            <h5 class="form-invalid-text">Password is requied</h5>
+        </div>
+      <div class="flex justify-center mt-6">
+        <button class="btn-primary w-3/5" type="submit" 
+        [disabled]="!signInForm.valid">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>

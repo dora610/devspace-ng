@@ -79,3 +79,16 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(), // ToastrModule added
   ],
 ```
+
+### Fort-Awesome
+```
+ng add @fortawesome/angular-fontawesome@0.10.2
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+@NgModule
+@NgModule({
+  imports: [
+    BrowserModule,
+    FontAwesomeModule
+  ],
+```

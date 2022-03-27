@@ -1,21 +1,30 @@
 <div
   class="card w-72 flex flex-col gap-2 items-center border-2 border-purple-100 rounded-lg shadow-md bg-purple-50 p-4 m-6 text-slate-700"
-  [ngClass]="{ hidden: !dev }"
-  *ngIf="dev; else loadingBlock"
->
-  <img
-    [src]="dev?.avatar_url"
-    alt="user avatar"
-    class="rounded-full w-11/12 border-4 border-purple-500"
-  />
+  [ngClass]="{ hidden: !dev }" *ngIf="dev; else loadingBlock">
+  <img [src]="dev?.avatar_url" alt="user avatar" class="rounded-full w-11/12 border-4 border-purple-500" />
   <div class="flex flex-col items-center mt-4 leading-5 capitalize text-center">
     <h2 class="text-2xl font-semibold mb-2">{{ dev?.name }}</h2>
-    Bio:
-    <h3> {{ dev?.bio }}</h3>
-    <p>Location: {{ dev?.location }}</p>
+    <h3>
+      <fa-icon [icon]="faAddressCard"></fa-icon>
+      <span> {{ dev?.bio }}</span>
+    </h3>
+    <p>
+      <fa-icon [icon]="faLocationDot"></fa-icon>
+      <span> {{ dev?.location }}</span>
+    </p>
     <p class="text-sm mt-2">Created at: {{ dev?.created_at | date }}</p>
     <p class="text-sm">Update at: {{ dev?.updated_at | date }}</p>
   </div>
+    <button class="mt-2 w-full border-2 text-purple-600 border-purple-400 rounded-lg hover:bg-purple-500 hover:text-white"
+    (click)="bookMarkProfile()" *ngIf="!isBookMarked; else elseblock">
+    <fa-icon [icon]="faBookmark"></fa-icon><span> Boookmark profile</span>
+  </button>
+  <ng-template #elseblock>
+    <button class="mt-2 w-full border-2 hover:text-purple-600 hover:border-purple-400 rounded-lg bg-purple-500 hover:bg-white text-white"
+    (click)="removeBookMark()">
+    <fa-icon [icon]="faBookmark"></fa-icon><span> Remove boookmark</span>
+  </button>
+  </ng-template>
 </div>
 <ng-template #loadingBlock>
   <app-loadingbar [isLoading]="isLoading"></app-loadingbar>

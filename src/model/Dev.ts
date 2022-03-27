@@ -5,5 +5,7 @@ export interface Dev{
     avatar_url: string,
     created_at: Date,
     updated_at: Date,
-    repos_url: string
+    repos_url: string,
+    login:string,
+    savedBy?: string
 }

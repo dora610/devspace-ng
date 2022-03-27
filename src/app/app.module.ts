@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 // firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireDatabaseModule} from '@angular/fire/compat/database'
 
 // env
 import { environment } from 'src/environments/environment';
@@ -30,6 +31,8 @@ import { FormsModule } from '@angular/forms';
 // http
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingbarComponent } from './components/loadingbar/loadingbar.component';
+import { BookmarkedComponent } from './pages/bookmarked/bookmarked.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { LoadingbarComponent } from './components/loadingbar/loadingbar.componen
     SignupComponent,
     PageNotFoundComponent,
     LoadingbarComponent,
+    BookmarkedComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +56,10 @@ import { LoadingbarComponent } from './components/loadingbar/loadingbar.componen
     ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

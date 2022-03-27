@@ -24,6 +24,14 @@
     <li>
       <h6 *ngIf="email">{{email}}</h6>
     </li>
+    <li>
+      <a
+        routerLinkActive="active-link"
+        *ngIf="uid"
+        [routerLink]="['/boookmarked']"
+        >Boookmarked</a
+      >
+    </li>
     <li (click)="signOutHandler()" class="cursor-pointer hover:text-purple-500">
       <a *ngIf="uid">SignOut</a>
     </li>

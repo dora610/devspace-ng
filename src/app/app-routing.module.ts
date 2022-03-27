@@ -8,28 +8,39 @@ import { SignupComponent } from './pages/signup/signup.component';
 // fireauth
 import {
   AngularFireAuthGuard,
-  hasCustomClaim,
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
+import { BookmarkedComponent } from './pages/bookmarked/bookmarked.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['signin']);
-const redirectLoggedInToItems = () => redirectLoggedInTo(['']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
+  {
+    path: 'signin',
+    component: SigninComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome },
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome },
+  },
+  {
+    path: 'boookmarked',
+    component: BookmarkedComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
   {
     path: '',
     component: HomeComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-  {
-    path: 'signin',
-    component: SigninComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToItems },
-  },
-  { path: 'signup', component: SignupComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -11,7 +11,7 @@
       <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
         <div class="form-group">
           <label for="email">Email: </label>
-          <input type="email" name="enail" id="email" class="form-control" 
+          <input type="email" name="email" id="email" class="form-control" 
           [(ngModel)]="email"
           required
           #emailValue="ngModel"/>
@@ -35,10 +35,9 @@
               <h5 class="form-invalid-text">Password is requied</h5>
           </div>
         <div class="flex justify-center mt-6">
-          <button class="btn-primary w-3/5" type="submit" 
+          <button class="btn-primary w-3/5" type="submit"
           [disabled]="!signInForm.valid">Sign Up</button>
         </div>
       </form>
     </div>
   </div>
-  

@@ -2,7 +2,7 @@
     <div class="bg-purple-100 rounded-lg p-4 mt-6 max-w-11/12" *ngIf="!isLoading; else loadingBlock">
         <div *ngIf="profiles && profiles.length; else noDataFound">
             <h2 class="text-lg font-bold text-purple-900 mb-2">Repo List</h2>
-            <div class="flex gap-2">
+            <div class="flex gap-2 flex-wrap">
                 <div class="card w-64 flex flex-col gap-2 items-center rounded-md shadow-md bg-white p-2 text-slate-700"
                 *ngFor="let profile of profiles;">
                 <img [src]="profile?.avatar_url" alt="user avatar"

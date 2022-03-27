@@ -39,7 +39,7 @@ export class BookmarkedComponent implements OnInit {
     this.isLoading = true;
     this.auth.getUser()((user) => {
       if (user) {
-        let userId = user?.uid;
+        // let userId = user?.uid;
         /* this.db.getData(userId).subscribe({
             next: (res)=>{
               this.profiles = res
